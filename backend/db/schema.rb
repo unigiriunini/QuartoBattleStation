@@ -16,10 +16,11 @@ ActiveRecord::Schema.define(version: 2021_12_05_033819) do
   enable_extension "plpgsql"
 
   create_table "ais", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.integer "elo"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_ais_on_name", unique: true
   end
 
 end
