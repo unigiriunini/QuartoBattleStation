@@ -38,7 +38,8 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    'nuxt-basic-auth-module'
   ],
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
@@ -73,5 +74,11 @@ export default {
       target: 'http://backend:3001',
       pathRewrite: {'^/api/': '/api/v1/'}
     },
+  },
+
+  basic: {
+    name: process.env.BASIC_USER,
+    pass:  process.env.BASIC_PASSWORD,
+    enabled: process.env.BASIC_ENABLED === 'true' // require boolean value(nullable)
   },
 }
