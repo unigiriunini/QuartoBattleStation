@@ -19,6 +19,11 @@ export default {
     ]
   },
 
+  privateRuntimeConfig: {
+    BASIC_USER: process.env.BASIC_USER,
+    BASIC_PASSWORD: process.env.BASIC_PASSWORD
+  },
+
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
   ],

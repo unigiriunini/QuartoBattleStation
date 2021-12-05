@@ -4,25 +4,14 @@
 
 <script>
 export default {
+  props: ['ais', 'loading', 'loadingText'],
   data () {
     return {
       headers: [
         { text: 'name', value: 'name' },
         { text: 'ELO', value: 'elo' },
-      ],
-      ais: [],
-      loading: true,
-      loadingText: "Loading... Please wait"
+      ]
     }
-  },
-  mounted() {
-    this.$axios.get('/api/ais')
-      .then((res) => {
-        this.ais = res.data.ais
-        this.loading = false
-      }).catch((error) => {
-        this.loadingText = "Sorry, something went wrong"
-      })
   }
 }
 </script>
