@@ -14,7 +14,7 @@ services:
       - db
   frontend:
     build: ./frontend
-    command: yarn dev
+    command: yarn start
     volumes:
       - ./frontend:/app
     environment:
