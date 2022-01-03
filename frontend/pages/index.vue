@@ -4,21 +4,20 @@
 
 <script>
 export default {
-  asyncData({ $axios, $config }) {
-    return $axios.get(
-      '/api/ais',
-      {
-        credentials: true,
-        auth: {
-          username: $config.BASIC_USER,
-          password: $config.BASIC_PASSWORD
-        }
-      })
-      .then((res) => {
-        return { 'ais': res.data.ais, 'loading': false, 'loadingText': '' }
-      }).catch((error) => {
-        return { 'ais': [], 'loading': true, 'loadingText': 'Sorry, something went wrong' }
-      })
+  data() {
+    return {
+      loading: true,
+      loadingText: 'Now loading...',
+    }
+  },
+  asyncData({ $fire }) {
+    return $fire.firestore.collection('AIs').get().then((snapshot) => {
+      return {
+        ais: snapshot.docs.map((doc) => { return { name: doc.id, elo: doc.data().ELO } })
+      }
+    }).catch((error) => {
+      return { loadingText: 'Sorry, something went wrong' }
+    })
   }
 }
 </script>

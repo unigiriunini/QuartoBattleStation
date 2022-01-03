@@ -43,7 +43,7 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    '@nuxtjs/axios'
+    '@nuxtjs/firebase'
   ],
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
@@ -77,6 +77,20 @@ export default {
     '/api/': {
       target: 'http://backend:3001',
       pathRewrite: {'^/api/': '/api/v1/'}
+    }
+  },
+
+  firebase: {
+    config: {
+      apiKey: 'AIzaSyC2qrcV-V-cY4qn5NDm1SGkjsmOq0WN1yw',
+      authDomain: 'quartobattlestation.firebaseapp.com',
+      projectId: 'quartobattlestation',
+      storageBucket: 'quartobattlestation.appspot.com',
+      messagingSenderId: '627953691048',
+      appId: '1:627953691048:web:488003be84b403a8c4959d',
+    },
+    services: {
+      firestore: true
     }
   }
 }
