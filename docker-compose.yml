@@ -8,21 +8,17 @@ services:
       - TZ=Asia/Tokyo
     networks:
       - app_network
-    ports:
-      - "3001:3001"
     depends_on:
       - db
   frontend:
     build: ./frontend
-    command: yarn start
+    command: yarn dev
     volumes:
       - ./frontend:/app
     environment:
       - TZ=Asia/Tokyo
     networks:
       - app_network
-    ports:
-      - "3000:3000"
   web:
     image: nginx
     volumes:
@@ -35,6 +31,8 @@ services:
       - NGINX_HOST=172.0.0.1
     networks:
       - app_network
+    depends_on:
+      - frontend
   db:
     image: postgres
     restart: always
