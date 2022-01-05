@@ -1,15 +1,5 @@
 version: '3.9'
 services:
-  backend:
-    build: ./backend
-    volumes:
-      - ./backend:/app
-    environment:
-      - TZ=Asia/Tokyo
-    networks:
-      - app_network
-    depends_on:
-      - db
   frontend:
     build: ./frontend
     command: yarn dev
@@ -33,18 +23,6 @@ services:
       - app_network
     depends_on:
       - frontend
-  db:
-    image: postgres
-    restart: always
-    volumes:
-      - ./db:/var/lib/postgresql/data
-    environment:
-      POSTGRES_USER: $DB_USERNAME
-      POSTGRES_PASSWORD: $DB_PASSWORD
-    ports:
-      - "5432:5432"
-    networks:
-      - app_network
 
 networks:
   app_network:
