@@ -7,22 +7,5 @@ services:
       - ./frontend:/app
     environment:
       - TZ=Asia/Tokyo
-    networks:
-      - app_network
-  web:
-    image: nginx
-    volumes:
-      - ./nginx:/etc/nginx/conf.d
-      - /etc/letsencrypt:/etc/letsencrypt
-      - /var/www/html:/var/www/html
     ports:
-      - "80:80"
-    environment:
-      - NGINX_HOST=172.0.0.1
-    networks:
-      - app_network
-    depends_on:
-      - frontend
-
-networks:
-  app_network:
+      - "3000:3000"
