@@ -1,5 +1,5 @@
 <template>
-  <ScoreBoard :ais=ais />
+  <EloList :ais=ais />
 </template>
 
 <script>
