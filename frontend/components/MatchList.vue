@@ -9,7 +9,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(match, index) in matches" :key="matches.id" :class="index % 2 ? 'bg-gray-100' : ''">
+          <tr v-for="(match, index) in matches" :key="matches.id">
             <td v-for="column_name in column_names" class="px-4 py-2 border" :class="match.winner == column_name ? 'bg-green-100' : 'bg-white'">{{ match[column_name] }}</td>
             <td class="px-4 py-2 border w-auto flex justify-center">
               <button @click="showVisualizer(match.id, match['firstAI'], match['secondAI'])" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">表示</button>
