@@ -13,7 +13,10 @@ export default {
   created() {
     this.snapshots.push(
       this.$fire.firestore.collection('GameRecords').onSnapshot((snapshot) => {
-        this.matches = snapshot.docs.map((doc) => { return { id: doc.id, firstAI: doc.data().firstAI, secondAI: doc.data().secondAI, createdAt: this.$moment(doc.data().createdAt.toDate()).format('YYYY/MM/DD HH:mm:ss'), winner: doc.data().winner } }).sort((a, b) => b.createdAt - a.createdAt)
+        this.matches = snapshot.docs.map((doc) => { return { id: doc.id, firstAI: doc.data().firstAI, secondAI: doc.data().secondAI, createdAt: doc.data().createdAt.toDate(), winner: doc.data().winner } }).sort((a, b) => b.createdAt - a.createdAt).map((match) => {
+          match.createdAt = this.$moment(match.createdAt).format('YYYY/MM/DD HH:mm:ss')
+          return match
+        })
       })
     )
   },
