@@ -12,20 +12,18 @@
           <tr v-for="(match, index) in matches" :key="matches.id" :class="index % 2 ? 'bg-gray-100' : ''">
             <td v-for="column_name in column_names" class="px-4 py-2 border">{{ match[column_name] }}</td>
             <td class="px-4 py-2 border w-auto flex justify-center">
-              <button @click="showVisualizer(match.id)" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">表示</button>
+              <button @click="showVisualizer(match.id, match['firstAI'], match['secondAI'])" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">表示</button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
-
-    <modal name="visualizer">
-      <p>WIP</p>
-    </modal>
   </div>
 </template>
 
 <script>
+import Visualizer from './Modal/Visualizer.vue'
+
 export default {
   props: ['matches'],
   data() {
@@ -42,8 +40,8 @@ export default {
       }
       return converter[column_name]
     },
-    showVisualizer(matchId) {
-      this.$modal.show("visualizer")
+    showVisualizer(matchId, firstAI, secondAI) {
+      this.$modal.show(Visualizer, { matchId: matchId, firstAI: firstAI, secondAI, secondAI }, { height: 'auto', width: '75%', scrollable: true })
     }
   }
 }
