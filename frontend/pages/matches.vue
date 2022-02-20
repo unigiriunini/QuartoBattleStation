@@ -1,19 +1,19 @@
 <template>
-  <EloList :ais=ais />
+  <MatchList :matches=matches>Hi</MatchList>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      ais: [],
+      matches: [],
       snapshots: []
     }
   },
   created() {
     this.snapshots.push(
-      this.$fire.firestore.collection('AIs').onSnapshot((snapshot) => {
-        this.ais = snapshot.docs.map((doc) => { return { name: doc.id, elo: doc.data().ELO } }).sort((a, b) => b.elo - a.elo)
+      this.$fire.firestore.collection('GameRecords').onSnapshot((snapshot) => {
+        this.matches = snapshot.docs.map((doc) => { return { id: doc.id, firstAI: doc.data().firstAI, secondAI: doc.data().secondAI, createdAt: this.$moment(doc.data().createdAt.toDate()).format('YYYY/MM/DD HH:mm:ss') } }).sort((a, b) => b.createdAt - a.createdAt)
       })
     )
   },
