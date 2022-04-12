@@ -15,11 +15,13 @@
     </div>
 
     <div class="flex justify-center items-center space-x-4 pb-12">
-      <button @click="previousHand()" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">前</button>
       <p>{{ currentIndex + 1 }}手目 {{ currentIndex % 2 ? firstAI : secondAI }}が配置</p>
-      <button v-if="records[currentIndex].callingQuarto" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow text-red-600">{{ currentIndex % 2 ? firstAI : secondAI }}の勝ち</button>
-      <button v-else-if="currentIndex >= 15" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow text-gray-400">引き分け</button>
-      <button v-else="" @click="nextHand()" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">次</button>
+      <button v-if="records[currentIndex].callingQuarto" class="text-gray-800 font-semibold text-red-600">{{ currentIndex % 2 ? firstAI : secondAI }}の勝ち</button>
+      <button v-else-if="currentIndex >= 15" class="bg-white text-gray-800 font-semibold text-gray-400">引き分け</button>
+    </div>
+    <div class="flex justify-center items-center space-x-4 pb-12">
+      <button @click="previousHand()" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">前</button>
+      <button @click="nextHand()" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">次</button>
     </div>
   </div>
 </template>
